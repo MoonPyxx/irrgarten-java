@@ -21,4 +21,7 @@ public class Weapon{
     public String toString(){
         return "W["+ power + "," + uses + "]";
     }
+    public boolean discard(){
+        return Dice.discardElement(uses);
+    }
 }

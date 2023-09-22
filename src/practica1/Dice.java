@@ -11,7 +11,7 @@ package practica1;
 public class Dice {
 
     /**
-     * a
+     * 
      * @param args the command line arguments
      */
     public static void main(String args[]) {

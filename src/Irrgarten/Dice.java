@@ -56,7 +56,7 @@ public class Dice{
         if (usesLeft == MAX_USES){
             return false;
         } else if (usesLeft == 0){
-            return false;
+            return true;
         } else {
             float probability = 1.0f - ((float)usesLeft / MAX_USES);
             return generator.nextFloat() < probability;

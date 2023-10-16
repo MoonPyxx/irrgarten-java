@@ -1,5 +1,7 @@
 package Irrgarten;
 
+import java.util.ArrayList;
+
 public class Player {
     private static int MAX_WEAPONS = 2;
     private static int MAX_SHIELDS = 3;
@@ -9,16 +11,24 @@ public class Player {
     private String name;
     private char number;
     private float intelligence, strength, health;
-    private int row, col, consescutiveHits=0;
+    private int row, col, consecutiveHits=0;
     
+    private ArrayList<Weapon> weapons = new ArrayList<>();
+    private ArrayList<Shield> shields = new ArrayList<>();
+
     
     public Player(char number, float intelligence, float strength){
         this.number = number;
         this.intelligence = intelligence;
         this.strength =  strength;
+        this.name = "Player # " + number;
+        this.health = INITIAL_HEALTH;
     }
     public void resurrect(){
-        
+        weapons.clear();
+        shields.clear();
+        health = INITIAL_HEALTH;
+        consecutiveHits = 0;
     }
     public int getRow(){
         return row;
@@ -34,22 +44,23 @@ public class Player {
         this.col = col;
     }
     public boolean dead(){
-        return false;
+        return health <= 0;
     }
     public Directions move(Directions direction, Directions[] validMoves){
         return null;
     }
     public float attack(){
-        return 0.0f;
+        return strength + sumWeapons();
     }
     public boolean defend(float receivedAttack){
-        return false;
+        return manageHit(receivedAttack);
     }
     public void receiveAward(){
         
     }
     public String toString(){
-        return null;
+        return "Player [Name: " + name + ", Number: " + number + ", Intelligence: " + intelligence + ", Strength: " + strength + ", Health: " + health + ", Row: " + row + ", Col: " + col + "]";
+;
     }
     private void receiveWeapon(Weapon w){
         
@@ -58,10 +69,14 @@ public class Player {
         
     }
     private Weapon newWeapon(){
-        return null;
+        float power = Dice.weaponPower();
+        int uses = Dice.usesLeft();
+        return new Weapon(power, uses);
     }
     private Shield newShield(){
-        return null;
+        float power = Dice.shieldPower();
+        int uses = Dice.usesLeft();
+        return new Shield(power, uses);
     }
     private float sumWeapons(){
         return 0.0f;

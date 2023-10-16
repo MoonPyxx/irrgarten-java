@@ -11,24 +11,26 @@ public class Monster {
         this.name = name;
         this.intelligence = intelligence;
         this.strength = strength;
+        this.health = INITIAL_HEALTH;
     }
     public boolean dead(){
-        return false;
+        return health <= 0;
     }
     public float attack(){
-        return 0.0f;
+        return Dice.intensity(strength);
     }
     public boolean defend(float receivedAttack){
         return false;
     }
-    public void setPost(int row, int col){
-        
+    public void setPos(int row, int col){
+        this.row = row;
+        this.col = col;
     }
     public String toString(){
-        return null;
+        return "Monster [Name: " + name + ", Intelligence: " + intelligence + ", Strength: " + strength + ", Health: " + health + ", Row: " + row + ", Col: " + col + "]";
     }
     public void gotWounded(){
-        
+        health -= 1;
     }
     
 }

@@ -35,16 +35,14 @@ public class Labyrinth {
   
     }
     public Monster putPlayer(Directions direction, Player player){
-        
+        return null;
     }
     public void addBlock(Orientation orientation, int startRow, int startCol, int length){
         
-    }{
-        
     }
-    
+            
     public Directions[] validMoves(int row, int col){
-        
+        return null;
     }
     private boolean posOK (int row, int col){
         return false;

@@ -24,6 +24,9 @@ public class Player {
         this.name = "Player # " + number;
         this.health = INITIAL_HEALTH;
     }
+    public Player(){
+        
+    }
     public void resurrect(){
         weapons.clear();
         shields.clear();
@@ -79,22 +82,33 @@ public class Player {
         return new Shield(power, uses);
     }
     private float sumWeapons(){
-        return 0.0f;
+        float sum = 0.0f;
+        for (Weapon w: weapons){
+            sum += w.attack();
+        }
+        return sum;
+    }
+    private float sumShields(){
+        float sum = 0.0f;
+        for (Shield s: shields){
+            sum += s.protect();
+        }
+        return sum;
     }
     private float defensiveEnergy(){
-        return 0.0f;
+        return intelligence + sumShields();
     }
     private boolean manageHit(float receivedAttack){
         return false;
     }
     private void resetHits(){
-        
+        consecutiveHits = 0;
     }
     private void gotWounded(){
-        
+        health -= 1;
     }
     private void incConsecutiveHits(){
-        
+        consecutiveHits++;
     }
     
     

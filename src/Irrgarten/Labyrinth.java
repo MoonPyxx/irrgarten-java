@@ -12,15 +12,18 @@ public class Labyrinth {
     private static int COL = 1;
     private int nRows, nCols, exitRow, exitCol;
     
-    private ArrayList<MonsterSquare> monsterSquares = new ArrayList(2);
-    private ArrayList<PlayerSquare> playerSquaress = new ArrayList(2);
-    private ArrayList<LabyrinthSquare> labyrinthSquares = new ArrayList(2);
+    private ArrayList<MonsterSquare> monsterSquares = new ArrayList<>();
+    private ArrayList<PlayerSquare> playerSquares = new ArrayList<>();
+    private ArrayList<LabyrinthSquare> labyrinthSquares = new ArrayList<>();
     
     public Labyrinth(int nRows, int nCols, int exitRow, int exitCol){
         this.nRows = nRows;
         this.nCols = nCols;
         this.exitRow = exitRow;
         this.exitCol = exitCol;
+    }
+    public Labyrinth(){
+        
     }
     public void spreadPlayers(Player[] players){
         

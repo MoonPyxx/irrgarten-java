@@ -1,22 +1,30 @@
 package Irrgarten;
 
+import java.util.ArrayList;
+        
 public class Game {
     private static int MAX_ROUNDS  = 10;
     private int currentPlayerIndex;
     private String log;
+    private ArrayList<Player> players = new ArrayList<>();
+    private Labyrinth labyrinth;
     
     
     public Game (int nPlayers){
-        
+        for (int i=0; i< nPlayers; i++){
+            players.add(new Player());
+        }
+        labyrinth = new Labyrinth();
     }
     public boolean finished(){
-        return false;
+        return labyrinth.haveAWinner();
+        
     }
     public boolean nextStep(Directions preferredDirection){
         return false;
     }
     public GameState getGameState(){
-        return null;
+        return new GameState();
     }
     private void configureLabyrinth(){
         

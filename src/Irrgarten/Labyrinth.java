@@ -34,7 +34,7 @@ public class Labyrinth {
     }
 
     
-    public void spreadPlayers(Player[] players){
+    public void spreadPlayers(ArrayList <Player> players){
         
     }
     public boolean haveAWinner(){

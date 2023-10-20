@@ -63,7 +63,6 @@ public class Player {
     }
     public String toString(){
         return "Player [Name: " + name + ", Number: " + number + ", Intelligence: " + intelligence + ", Strength: " + strength + ", Health: " + health + ", Row: " + row + ", Col: " + col + "]";
-;
     }
     private void receiveWeapon(Weapon w){
         

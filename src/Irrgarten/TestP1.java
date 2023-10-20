@@ -1,4 +1,4 @@
-    package Irrgarten;
+/*    package Irrgarten;
     public class TestP1 {
         public static void main(String[] args){
             Weapon sword = new Weapon(5.0f, 3);
@@ -16,3 +16,4 @@
         }
 
     }
+*/

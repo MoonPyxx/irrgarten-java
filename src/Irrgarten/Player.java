@@ -29,7 +29,7 @@ public class Player {
     }
     public void resurrect(){
         weapons.clear();
-        shields.clear();
+        shields.clear();    
         health = INITIAL_HEALTH;
         consecutiveHits = 0;
     }

@@ -12,19 +12,22 @@ public class Labyrinth {
     private static int COL = 1;
     private int nRows, nCols, exitRow, exitCol;
     
-    private ArrayList<MonsterSquare> monsterSquares = new ArrayList<>();
-    private ArrayList<PlayerSquare> playerSquares = new ArrayList<>();
-    private ArrayList<LabyrinthSquare> labyrinthSquares = new ArrayList<>();
-    
+    private char [][] labyrinth;
     public Labyrinth(int nRows, int nCols, int exitRow, int exitCol){
         this.nRows = nRows;
         this.nCols = nCols;
         this.exitRow = exitRow;
         this.exitCol = exitCol;
+        this.labyrinth = new char[nRows][nCols];
+        for (int i = 0; i<nRows; i++){
+            for (int j = 0; j<nCols; j++){
+                labyrinth[i][j] = EMPTY_CHAR;
+            }
+        }
+        labyrinth[exitRow][exitCol] = EXIT_CHAR;
     }
-    public Labyrinth(){
-        
-    }
+
+    
     public void spreadPlayers(Player[] players){
         
     }

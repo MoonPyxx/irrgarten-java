@@ -26,18 +26,17 @@ public class Game {
     }
     public boolean finished(){
         return labyrinth.haveAWinner();
-        
     }
     public boolean nextStep(Directions preferredDirection){
         return false;
     }
     public GameState getGameState(){
-        String labyrinthString = labyrinth.toString();
-     String playersString = "";
+    String labyrinthString = labyrinth.toString();
+    String playersString = "";
     for (Player p : players) {
         playersString += p.toString() + "\n";
     }
-        String monstersString = "";
+    String monstersString = "";
         for (Monster m : monsters){
             monstersString += m.toString() + "\n";
         }

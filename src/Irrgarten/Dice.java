@@ -13,7 +13,7 @@ public class Dice{
     private static final int MAX_SHIELD = 2;
     private static Random generator = new Random();
     
-    a
+    
     // Metodos de clase publicos
     
     public static int randomPos(int max){

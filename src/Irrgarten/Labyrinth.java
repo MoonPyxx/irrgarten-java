@@ -80,6 +80,12 @@ public class Labyrinth {
     private boolean posOK (int row, int col){
         return row >=0 && row < nRows && col >= 0 && col < nCols;
     }
+    private boolean emptyPos(int row, int col){
+        if (!posOK(row, col))
+        return false;
+                
+        return labyrinth[row][col] == EMPTY_CHAR && players[row][col] == null && monsters[row][col] == null;
+    }
     private boolean monsterPos(int row, int col){
         return monsters[row][col]!=null;
     }

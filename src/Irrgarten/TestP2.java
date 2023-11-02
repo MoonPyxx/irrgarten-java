@@ -7,5 +7,8 @@ package Irrgarten;
 
 public class TestP2 {
     public static void main(String[] args){
- 
+         Game game = new Game(3);
+         GameState gamestate = game.getGameState();
 }
+}
+

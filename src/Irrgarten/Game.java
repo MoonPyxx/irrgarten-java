@@ -28,7 +28,29 @@ public class Game {
         return labyrinth.haveAWinner();
     }
     public boolean nextStep(Directions preferredDirection){
-        return false;
+        String log = "";
+        Player currentPlayer = players.get(currentPlayerIndex);
+        boolean dead = currentPlayer.dead();
+        if (!dead){
+            Directions direction = actualDirection(preferredDirection);
+            if (direction != preferredDirection){
+                logPlayerNoOrders();
+            }
+            Monster monster = labyrinth.putPlayer(direction, currentPlayer);
+            if (monster == null){
+                logNoMonster();
+            } else {
+                GameCharacter winner = combat(monster);
+                manageReward(winner);
+            }
+        } else {
+            manageResurrection();
+        }
+        boolean endGame = finished();
+        if (!endGame){
+            nextPlayer();
+        } 
+        return endGame;
     }
     public GameState getGameState(){
     String labyrinthString = labyrinth.toString();
@@ -65,16 +87,57 @@ public class Game {
         }
     }
     private Directions actualDirection(Directions preferredDirection){
+        Player currentPlayer = players.get(currentPlayerIndex);
+        int currentRow = currentPlayer.getRow();
+        int currentCol = currentPlayer.getCol();
+        Directions [] validMoves = labyrinth.validMoves(currentRow, currentCol);
+        currentPlayer.move(preferredDirection, validMoves);
+        for (Directions validMove: validMoves){
+            if (validMove == preferredDirection){
+                return preferredDirection;
+            }
+        }
         return null;
     }
     private GameCharacter combat(Monster monster){
-        return null;
+        Player currentPlayer = players.get(currentPlayerIndex);
+        int rounds = 0;
+        GameCharacter winner = GameCharacter.PLAYER;
+        boolean lose = false;
+        while (!lose && rounds < MAX_ROUNDS){
+           float playerAttack = currentPlayer.attack(); 
+           lose = monster.defend(playerAttack);
+           if (!lose){
+               float monsterAttack = monster.attack();
+               lose = currentPlayer.defend(monsterAttack);
+               if (lose){
+                   winner = GameCharacter.MONSTER;
+               }
+           }
+           rounds ++;
+        }
+        logRounds(rounds, MAX_ROUNDS);
+        return winner;
+        
     }
     private void manageReward(GameCharacter winner){
-        
+        Player currentPlayer = players.get(currentPlayerIndex);
+        if (winner == GameCharacter.PLAYER){
+            currentPlayer.receiveReward();
+            logPlayerWon();
+        } else{
+            logMonsterWon();
+        }
     }
     private void manageResurrection(){
-        
+        Player currentPlayer = players.get(currentPlayerIndex);
+        boolean resurrect = Dice.resurrectPlayer();
+        if (resurrect){
+            currentPlayer.resurrect();
+            logResurrected();
+        } else{
+            logPlayerSkipTurn();
+        }
     }
     private void logPlayerWon(){
         log += "The player has won the combat.\n";

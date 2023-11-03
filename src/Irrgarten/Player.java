@@ -58,7 +58,7 @@ public class Player {
     public boolean defend(float receivedAttack){
         return manageHit(receivedAttack);
     }
-    public void receiveAward(){
+    public void receiveReward(){
         
     }
     public String toString(){

@@ -35,7 +35,10 @@ public class Labyrinth {
 
     
     public void spreadPlayers(ArrayList <Player> players){
-        
+        for (Player p : players){
+            int [] pos = randomEmptyPos();
+            putPlayer2D(-1, -1, pos[0], pos[1], p); // oldRow = -1 oldCol = -1 
+        }
     }
     public boolean haveAWinner(){
         return players[exitRow][exitCol] != null;
@@ -68,14 +71,46 @@ public class Labyrinth {
         }
     }
     public Monster putPlayer(Directions direction, Player player){
-        return null;
-    }
+        int oldRow = player.getRow();
+        int oldCol = player.getCol();
+        int [] newPos = dir2Pos(oldRow, oldCol, direction);
+        Monster monster = putPlayer2D(oldRow, oldCol, newPos[ROW], newPos[COL], player);
+        return monster;
+     }
     public void addBlock(Orientation orientation, int startRow, int startCol, int length){
+        int incRow = 0;
+        int incCol = 0;
+        if (orientation == Orientation.VERTICAL){
+            incRow = 1;
+        } else{
+            incCol = 1;
+        }
+        int row = startRow;
+        int col = startCol;
         
+        while (posOK(row,col) && emptyPos(row,col) && length > 0){
+            labyrinth[row][col]= BLOCK_CHAR;
+            row += incRow;
+            col += incCol;
+            length--;
+        }
     }
             
     public Directions[] validMoves(int row, int col){
-        return null;
+       ArrayList<Directions> output = new ArrayList<>();
+       if (canStepOn(row+1, col)){
+           output.add(Directions.DOWN);
+       }
+       if (canStepOn(row-1, col)){
+           output.add(Directions.UP);
+       }
+       if (canStepOn(row, col+1)){
+           output.add(Directions.RIGHT);
+       }
+       if (canStepOn(row, col-1)){
+           output.add(Directions.LEFT);
+       }
+       return output.toArray(new Directions[output.size()]);
     }
     private boolean posOK (int row, int col){
         return row >=0 && row < nRows && col >= 0 && col < nCols;
@@ -133,7 +168,27 @@ public class Labyrinth {
          } while (labyrinth[randomRow][randomCol] != EMPTY_CHAR);   
          return new int[]{randomRow, randomCol};
      }
-     private Monster putPlayer2D(int oldRow, int OldCol, int row, int col, Player player){
-         return null;
+     private Monster putPlayer2D(int oldRow, int oldCol, int row, int col, Player player){
+         Monster output = null;
+         if (canStepOn(row,col)){
+             if (posOK(oldRow, oldCol)){
+                 Player p = players[oldRow][oldCol];
+                 if (p == player){
+                     updateOldPos(oldRow, oldCol);
+                     players[oldRow][oldCol] = null;
+                 }
+             }
+             boolean monsterPos = monsterPos(row, col);
+             if (monsterPos){
+                 labyrinth[row][col] = COMBAT_CHAR;
+                 output = monsters[row][col];
+             } else{
+                char number = player.getNumber();
+                labyrinth[row][col] = number;
+             }
+             players[row][col] = player;
+             player.setPos(row, col);
+         }
+         return output;
      }
 }

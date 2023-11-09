@@ -16,7 +16,7 @@ public class Shield{
         }
     }
     public String toString(){
-        return "S["+ protection + "," + uses + "]";
+        return "S[Protection: "+ protection + ", uses: " + uses + "]";
     }
     public boolean discard(){
         return Dice.discardElement(uses);

@@ -24,9 +24,6 @@ public class Player {
         this.name = "Player # " + number;
         this.health = INITIAL_HEALTH;
     }
-    public Player(){
-        
-    }
     public void resurrect(){
         weapons.clear();
         shields.clear();    
@@ -74,6 +71,8 @@ public class Player {
     public void receiveReward(){
         int wReward = Dice.weaponsReward();
         int sReward = Dice.shieldsReward();
+        System.out.println("w " + wReward);
+        System.out.println("s : " + sReward);
         for (int i = 0; i < wReward; i++){
             Weapon wnew = newWeapon();
             receiveWeapon(wnew);
@@ -86,7 +85,8 @@ public class Player {
         health += extraHealth;
     }
     public String toString(){
-        return "Player [Name: " + name + ", Number: " + number + ", Intelligence: " + intelligence + ", Strength: " + strength + ", Health: " + health + ", Row: " + row + ", Col: " + col + "]";
+        return "Player [Name: " + name + ", Number: " + number + ", Intelligence: " + intelligence +
+                ", Strength: " + strength + ", Health: " + health + ", Row: " + row + ", Col: " + col + "]" +"\n" + weapons.toString() + "\n" + shields.toString();
     }
     private void receiveWeapon(Weapon w){
         for (int i = 0; i < weapons.size(); i++){

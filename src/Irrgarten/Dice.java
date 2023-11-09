@@ -32,13 +32,13 @@ public class Dice{
         return generator.nextFloat() < RESURRECT_PROB;
     }
     public static int weaponsReward(){
-        return generator.nextInt() * WEAPONS_REWARD + 1;
+        return generator.nextInt(WEAPONS_REWARD + 1);
     }
     public static int shieldsReward(){
-        return generator.nextInt() * SHIELDS_REWARD + 1;
+        return generator.nextInt(SHIELDS_REWARD + 1);
     }
     public static int healthReward(){
-        return generator.nextInt() * HEALTH_REWARD + 1;
+        return generator.nextInt(HEALTH_REWARD + 1);
     }
     public static float weaponPower(){
         return generator.nextFloat() * MAX_ATTACK;
@@ -47,7 +47,7 @@ public class Dice{
         return generator.nextFloat() * MAX_SHIELD;
     }
     public static int usesLeft(){
-        return generator.nextInt() * MAX_USES + 1;
+        return generator.nextInt(MAX_USES + 1);
     }
     public static float intensity(float competence){
         return generator.nextFloat() * competence;

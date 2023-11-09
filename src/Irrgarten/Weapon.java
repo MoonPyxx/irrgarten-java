@@ -19,7 +19,7 @@ public class Weapon{
         }
     }
     public String toString(){
-        return "W["+ power + "," + uses + "]";
+        return "W[Power: " + power + ", uses: " + uses + "]";
     }
     public boolean discard(){
         return Dice.discardElement(uses);

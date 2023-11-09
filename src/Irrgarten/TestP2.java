@@ -4,7 +4,7 @@
  */
 package Irrgarten;
 
-
+/*
 public class TestP2 {
     public static void main(String[] args){
          Game game = new Game(3);
@@ -12,3 +12,4 @@ public class TestP2 {
 }
 }
 
+*/

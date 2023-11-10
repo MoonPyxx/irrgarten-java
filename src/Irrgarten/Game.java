@@ -12,7 +12,8 @@ public class Game {
     
     
     public Game (int nPlayers){
-        for (int i=1; i <= nPlayers; i++){
+        log = "";
+        for (int i=0; i < nPlayers; i++){
             float intelligence = Dice.randomIntelligence();
             float strength = Dice.randomStrength();
             players.add(new Player((char)(i + '0'), intelligence, strength));
@@ -92,13 +93,8 @@ public class Game {
         int currentRow = currentPlayer.getRow();
         int currentCol = currentPlayer.getCol();
         Directions [] validMoves = labyrinth.validMoves(currentRow, currentCol);
-        currentPlayer.move(preferredDirection, validMoves);
-        for (Directions validMove: validMoves){
-            if (validMove == preferredDirection){
-                return preferredDirection;
-            }
-        }
-        return null;
+        Directions output = currentPlayer.move(preferredDirection, validMoves);
+        return output;
     }
     private GameCharacter combat(Monster monster){
         Player currentPlayer = players.get(currentPlayerIndex);

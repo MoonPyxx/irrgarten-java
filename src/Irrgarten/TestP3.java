@@ -8,7 +8,8 @@ public class TestP3 {
         vista.showGame(game.getGameState());
         game.nextStep(Directions.DOWN);
         vista.showGame(game.getGameState());
-
+        game.nextStep(Directions.DOWN);
+        vista.showGame(game.getGameState());
         
         
 }

@@ -16,7 +16,6 @@ public class Game {
             float intelligence = Dice.randomIntelligence();
             float strength = Dice.randomStrength();
             players.add(new Player((char)(i + '0'), intelligence, strength));
-            
         }
         currentPlayerIndex = Dice.whoStarts(nPlayers);
         int exitRow = Dice.randomPos(10);
@@ -75,9 +74,11 @@ public class Game {
                 float strength = Dice.randomStrength();
                 
                 Monster m = new Monster(monsterName, intelligence, strength);
+                m.setPos(row,col);
                 labyrinth.addMonster(row,col, m);
                 monsters.add(m);
             }
+            labyrinth.spreadPlayers(players);
                     
     }
     private void nextPlayer(){

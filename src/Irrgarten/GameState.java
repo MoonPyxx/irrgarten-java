@@ -15,4 +15,10 @@ public class GameState {
        this.winner = winner;
        this.log = log;
    }
+   // Este getter es para comprobar
+   public String getLabyrinth(){
+       return labyrinth;
+   }
+   
 }
+

@@ -1,16 +1,12 @@
 package Irrgarten;
 import Irrgarten.UI.TextUI;
+import Irrgarten.controller.Controller;
 public class TestP3 {
     public static void main(String[] args) {
 
-        Game game = new Game(4);
+        Game game = new Game(2,false);
         TextUI vista = new TextUI();
-        vista.showGame(game.getGameState());
-        game.nextStep(Directions.DOWN);
-        vista.showGame(game.getGameState());
-        game.nextStep(Directions.DOWN);
-        vista.showGame(game.getGameState());
-        
-        
+        Controller c = new Controller(game,vista);
+        c.play();
 }
 }

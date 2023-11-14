@@ -40,6 +40,16 @@ public class Labyrinth {
             putPlayer2D(-1, -1, pos[0], pos[1], p); // oldRow = -1 oldCol = -1 
         }
     }
+    public void spreadPlayersDebug(ArrayList <Player> players){
+        int row,col, i = 0;
+        for (Player p : players){
+            row = i+1;
+            col = i+2;
+            int [] pos = new int[]{row, col};
+            putPlayer2D(-1,-1,pos[0],pos[1],p);
+            i++;
+        }
+    }
     public boolean haveAWinner(){
         return players[exitRow][exitCol] != null;
     }
@@ -116,9 +126,9 @@ public class Labyrinth {
         return row >=0 && row < nRows && col >= 0 && col < nCols;
     }
     private boolean emptyPos(int row, int col){
-        if (!posOK(row, col))
+        if (!posOK(row, col)){
         return false;
-                
+        }
         return labyrinth[row][col] == EMPTY_CHAR && players[row][col] == null && monsters[row][col] == null;
     }
     private boolean monsterPos(int row, int col){
@@ -168,7 +178,7 @@ public class Labyrinth {
          } while (labyrinth[randomRow][randomCol] != EMPTY_CHAR);   
          return new int[]{randomRow, randomCol};
      }
-     private Monster putPlayer2D(int oldRow, int oldCol, int row, int col, Player player){
+     public Monster putPlayer2D(int oldRow, int oldCol, int row, int col, Player player){
          Monster output = null;
          if (canStepOn(row,col)){
              if (posOK(oldRow, oldCol)){

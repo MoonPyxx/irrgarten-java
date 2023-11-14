@@ -11,8 +11,19 @@ public class Game {
     private Labyrinth labyrinth;
     
     
-    public Game (int nPlayers){
+    public Game (int nPlayers, boolean debug){
         log = "";
+        if(debug){
+            for (int i=0; i < nPlayers; i++){
+            float intelligence = i+1;
+            float strength = i+2;
+            players.add(new Player((char)(i + '0'), intelligence, strength));
+        }   
+            currentPlayerIndex = 1;
+            labyrinth = new Labyrinth(10,10,8,8);
+            configureLabyrinthDebug();
+        } else{
+            
         for (int i=0; i < nPlayers; i++){
             float intelligence = Dice.randomIntelligence();
             float strength = Dice.randomStrength();
@@ -23,6 +34,8 @@ public class Game {
         int exitCol = Dice.randomPos(10);
         labyrinth = new Labyrinth(10, 10, exitRow, exitCol);
         configureLabyrinth();
+        }
+        
     }
     public boolean finished(){
         return labyrinth.haveAWinner();
@@ -66,7 +79,17 @@ public class Game {
         return new GameState(labyrinthString, playersString, monstersString, currentPlayerIndex, isWinner, log);
     }
     private void configureLabyrinth(){
-            for (int i = 0; i < 5; i++) {
+        int numBlocks = 5;
+            for (int i = 0; i < numBlocks; i++) {
+                int row = Dice.randomPos(10);
+                int col = Dice.randomPos(10);
+                
+                int length = 2;
+                
+                labyrinth.addBlock(Orientation.VERTICAL, row, col ,length);
+            }
+        int numMonsters = 5;
+            for (int i = 0; i < numMonsters; i++) {
                 int row = Dice.randomPos(10);
                 int col = Dice.randomPos(10);
                 
@@ -81,6 +104,18 @@ public class Game {
             }
             labyrinth.spreadPlayers(players);
                     
+    }
+    private void configureLabyrinthDebug(){
+        for (int i = 0; i<5; i++){
+            String monsterName = "Monster " + (i+1);
+            float intelligence = i+1;
+            float strength = i+1;
+            Monster m = new Monster(monsterName, intelligence, strength);
+            m.setPos(i+1, i+1);
+            labyrinth.addMonster(i+1,i+1, m);
+             monsters.add(m);
+        }
+        labyrinth.spreadPlayersDebug(players);
     }
     private void nextPlayer(){
         currentPlayerIndex++;
@@ -163,4 +198,11 @@ public class Game {
        log += rounds + " out of " + max + " combat rounds have occurred.\n";
 
     }
+    // getters temporal
+    public Player getCurrentPlayer(){
+        return players.get(currentPlayerIndex);
+    }
+    public Labyrinth getLabyrinth(){
+        return labyrinth;
+    } 
 }

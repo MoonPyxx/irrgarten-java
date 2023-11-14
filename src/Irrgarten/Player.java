@@ -170,7 +170,10 @@ public class Player {
     private void incConsecutiveHits(){
         consecutiveHits++;
     }
-    
+    // setter temporal
+    public void setHealth(int h){
+        health = h;
+    }
     
     
 }

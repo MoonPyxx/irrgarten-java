@@ -14,7 +14,7 @@ public class Game {
     public Game (int nPlayers, boolean debug){
         log = "";
         if(debug){
-            for (int i=0; i < nPlayers; i++){
+            for (int i=0; i < nPlayers; i++){   
             float intelligence = i+1;
             float strength = i+2;
             players.add(new Player((char)(i + '0'), intelligence, strength));
@@ -67,7 +67,7 @@ public class Game {
     }
     public GameState getGameState(){
     String labyrinthString = labyrinth.toString();
-    String playersString = "";
+    String playersString = "";  
     for (Player p : players) {
         playersString += p.toString() + "\n";
     }
@@ -83,9 +83,7 @@ public class Game {
             for (int i = 0; i < numBlocks; i++) {
                 int row = Dice.randomPos(10);
                 int col = Dice.randomPos(10);
-                
                 int length = 2;
-                
                 labyrinth.addBlock(Orientation.VERTICAL, row, col ,length);
             }
         int numMonsters = 5;
@@ -106,12 +104,21 @@ public class Game {
                     
     }
     private void configureLabyrinthDebug(){
-        for (int i = 0; i<5; i++){
+        int numBlocks = 5, numMonsters = 5;
+            for (int i = 0; i < numBlocks; i++) {
+                int row = i+1;
+                int col = i+1; 
+                int length = 2;
+                labyrinth.addBlock(Orientation.VERTICAL, row, col ,length);
+         }
+        for (int i = 0; i<numMonsters; i++){
+            int row = i;
+            int col = i;      
             String monsterName = "Monster " + (i+1);
             float intelligence = i+1;
             float strength = i+1;
             Monster m = new Monster(monsterName, intelligence, strength);
-            m.setPos(i+1, i+1);
+            m.setPos(row, col);
             labyrinth.addMonster(i+1,i+1, m);
              monsters.add(m);
         }

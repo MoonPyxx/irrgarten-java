@@ -1,4 +1,3 @@
-
 package Irrgarten;
 
 public class Monster {

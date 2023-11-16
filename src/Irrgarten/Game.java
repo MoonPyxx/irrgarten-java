@@ -41,7 +41,7 @@ public class Game {
         return labyrinth.haveAWinner();
     }
     public boolean nextStep(Directions preferredDirection){
-        String log = "";
+        log = "";
         Player currentPlayer = players.get(currentPlayerIndex);
         boolean dead = currentPlayer.dead();
         if (!dead){

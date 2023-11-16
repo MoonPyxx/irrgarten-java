@@ -86,7 +86,8 @@ public class Player {
     }
     public String toString(){
         return "Player [Name: " + name + ", Number: " + number + ", Intelligence: " + intelligence +
-                ", Strength: " + strength + ", Health: " + health + ", Row: " + row + ", Col: " + col + "]" +"\n" + weapons.toString() + "\n" + shields.toString();
+                ", Strength: " + strength + ", Health: " + health + ", Row: " + row + ", Col: " + col + "]" +"\n" + weapons.toString() + "\n" + shields.toString()
+                + " Sum weapons: " + sumWeapons() + " Sum shields " + sumShields();
     }
     private void receiveWeapon(Weapon w){
         for (int i = 0; i < weapons.size(); i++){
@@ -98,7 +99,7 @@ public class Player {
             }
         }
         int size = weapons.size();
-        if (size < MAX_SHIELDS){
+        if (size < MAX_WEAPONS){
             weapons.add(w);
         }
     }

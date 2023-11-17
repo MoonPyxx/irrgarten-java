@@ -12,18 +12,19 @@ public class Game {
     
     
     public Game (int nPlayers, boolean debug){
-        log = "";
+        
         if(debug){
+            log = "";
             for (int i=0; i < nPlayers; i++){   
-            float intelligence = i+1;
-            float strength = i+2;
+            float intelligence = 5;
+            float strength = 5;
             players.add(new Player((char)(i + '0'), intelligence, strength));
         }   
-            currentPlayerIndex = 1;
-            labyrinth = new Labyrinth(10,10,8,8);
+            currentPlayerIndex = 0;
+            labyrinth = new Labyrinth(10,10,9,9);
             configureLabyrinthDebug();
         } else{
-            
+            log = "";
         for (int i=0; i < nPlayers; i++){
             float intelligence = Dice.randomIntelligence();
             float strength = Dice.randomStrength();
@@ -41,7 +42,7 @@ public class Game {
         return labyrinth.haveAWinner();
     }
     public boolean nextStep(Directions preferredDirection){
-        log = "";
+         log = "";
         Player currentPlayer = players.get(currentPlayerIndex);
         boolean dead = currentPlayer.dead();
         if (!dead){
@@ -104,14 +105,15 @@ public class Game {
                     
     }
     private void configureLabyrinthDebug(){
-        int numBlocks = 5, numMonsters = 5;
+        int numBlocks = 2, numMonsters = 2;
             for (int i = 0; i < numBlocks; i++) {
                 int row = i+1;
                 int col = i+1; 
                 int length = 2;
                 labyrinth.addBlock(Orientation.VERTICAL, row, col ,length);
          }
-        for (int i = 0; i<numMonsters; i++){
+        /*crear monstruos de manera automatica (debug), como voy a crear 2 para comprobar el combate no hace falta
+            for (int i = 0; i<numMonsters; i++){ 
             int row = i;
             int col = i;      
             String monsterName = "Monster " + (i+1);
@@ -122,6 +124,15 @@ public class Game {
             labyrinth.addMonster(i+1,i+1, m);
              monsters.add(m);
         }
+*/
+        Monster m1 = new Monster("Monster 1", 10,10);
+        Monster m2 = new Monster("Monster 2", 6,6);
+        labyrinth.addMonster(5,5,m1);
+        monsters.add(m1);
+        m1.setPos(5,5);
+        labyrinth.addMonster(6,6,m2);
+        monsters.add(m2);
+        m2.setPos(6,6);
         labyrinth.spreadPlayersDebug(players);
     }
     private void nextPlayer(){

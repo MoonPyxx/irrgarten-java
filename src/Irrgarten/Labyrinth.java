@@ -41,6 +41,8 @@ public class Labyrinth {
         }
     }
     public void spreadPlayersDebug(ArrayList <Player> players){
+        /*
+        asignar jugadores automaticamente, como lo voy a asignar manualmente no hace falta
         int row,col, i = 0;
         for (Player p : players){
             row = i+1;
@@ -49,6 +51,12 @@ public class Labyrinth {
             putPlayer2D(-1,-1,pos[0],pos[1],p);
             i++;
         }
+        */
+        Player player0 = players.get(0);
+        Player player1 = players.get(1);
+        putPlayer2D(-1, -1, 5, 6, player0);
+        putPlayer2D(-1, -1, 6, 5, player1);
+              
     }
     public boolean haveAWinner(){
         return players[exitRow][exitCol] != null;

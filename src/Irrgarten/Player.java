@@ -173,7 +173,7 @@ public class Player {
     }
     // setter temporal
     public void setHealth(int h){
-        health = h;
+        this.health = h;
     }
     
     

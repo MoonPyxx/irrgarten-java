@@ -9,6 +9,7 @@ public class Game {
     private ArrayList<Player> players = new ArrayList<>();
     private ArrayList<Monster> monsters = new ArrayList<>();
     private Labyrinth labyrinth;
+    private Player currentPlayer;
     
     
     public Game (int nPlayers, boolean debug){
@@ -31,6 +32,7 @@ public class Game {
             players.add(new Player((char)(i + '0'), intelligence, strength));
         }
         currentPlayerIndex = Dice.whoStarts(nPlayers);
+        currentPlayer= players.get(currentPlayerIndex);
         int exitRow = Dice.randomPos(10);
         int exitCol = Dice.randomPos(10);
         labyrinth = new Labyrinth(10, 10, exitRow, exitCol);
@@ -43,7 +45,6 @@ public class Game {
     }
     public boolean nextStep(Directions preferredDirection){
          log = "";
-        Player currentPlayer = players.get(currentPlayerIndex);
         boolean dead = currentPlayer.dead();
         if (!dead){
             Directions direction = actualDirection(preferredDirection);
@@ -142,7 +143,6 @@ public class Game {
         }
     }
     private Directions actualDirection(Directions preferredDirection){
-        Player currentPlayer = players.get(currentPlayerIndex);
         int currentRow = currentPlayer.getRow();
         int currentCol = currentPlayer.getCol();
         Directions [] validMoves = labyrinth.validMoves(currentRow, currentCol);
@@ -150,7 +150,6 @@ public class Game {
         return output;
     }
     private GameCharacter combat(Monster monster){
-        Player currentPlayer = players.get(currentPlayerIndex);
         int rounds = 0;
         GameCharacter winner = GameCharacter.PLAYER;
         boolean lose = false;
@@ -171,7 +170,6 @@ public class Game {
         
     }
     private void manageReward(GameCharacter winner){
-        Player currentPlayer = players.get(currentPlayerIndex);
         if (winner == GameCharacter.PLAYER){
             currentPlayer.receiveReward();
             logPlayerWon();
@@ -180,7 +178,6 @@ public class Game {
         }
     }
     private void manageResurrection(){
-        Player currentPlayer = players.get(currentPlayerIndex);
         boolean resurrect = Dice.resurrectPlayer();
         if (resurrect){
             currentPlayer.resurrect();

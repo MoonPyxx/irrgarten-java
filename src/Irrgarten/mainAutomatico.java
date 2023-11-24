@@ -1,6 +1,5 @@
 package Irrgarten;
 import Irrgarten.UI.TextUI;
-import Irrgarten.controller.Controller;
 public class mainAutomatico {
     public static void main(String[] args) {
 

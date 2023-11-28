@@ -62,4 +62,12 @@ public class Dice{
             return generator.nextFloat() < probability;
         }
     }
+    // Practica 4
+    public static Directions nextStep(Directions preference, ArrayList<Directions> validMoves, float intelligence){
+        if (generator.nextFloat() < (intelligence / MAX_INTELLIGENCE)){
+            return preference;
+        } else{
+            return validMoves.get(generator.nextInt(validMoves.size()));
+        }
+    }
 }

@@ -1,43 +1,29 @@
 package Irrgarten;
 
-public class Monster {
+public class Monster extends LabyrinthCharacter {
     private static int INITIAL_HEALTH  = 5;
-    private String name;
-    private float intelligence, strength, health;
-    private int row, col;
     
     public Monster (String name, float intelligence, float strength){
-        this.name = name;
-        this.intelligence = intelligence;
-        this.strength = strength;
-        this.health = INITIAL_HEALTH;
+        super(name,intelligence,strength,INITIAL_HEALTH);
     }
-    public boolean dead(){
-        return health <= 0;
-    }
+    @Override
     public float attack(){
-        return Dice.intensity(strength);
+        return Dice.intensity(getStrength());
     }
-    public boolean defend(float receivedAttack){
+    @Override
+    public Boolean defend(float receivedAttack){
         if (dead()){
             return false;
         }
-        float defensiveEnergy = Dice.intensity(intelligence);
+        float defensiveEnergy = Dice.intensity(getIntelligence());
              if (defensiveEnergy < receivedAttack){
                  gotWounded();
                  return dead();
         }
              return false;
         } 
-    public void setPos(int row, int col){
-        this.row = row;
-        this.col = col;
-    }
+    @Override
     public String toString(){
-        return "Monster [Name: " + name + ", Intelligence: " + intelligence + ", Strength: " + strength + ", Health: " + health + ", Row: " + row + ", Col: " + col + "]";
+        return super.toString();
     }
-    public void gotWounded(){
-        health -= 1;
-    }
-    
 }

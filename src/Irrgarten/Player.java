@@ -2,49 +2,29 @@ package Irrgarten;
 
 import java.util.ArrayList;
 
-public class Player {
+public class Player extends LabyrinthCharacter {
     private static int MAX_WEAPONS = 2;
     private static int MAX_SHIELDS = 3;
     private static int INITIAL_HEALTH = 10;
     private static int HITS2LOSE = 3;
-    
-    private String name;
     private char number;
-    private float intelligence, strength, health;
-    private int row, col, consecutiveHits=0;
+    private int consecutiveHits=0;
     
     private ArrayList<Weapon> weapons = new ArrayList<>();
     private ArrayList<Shield> shields = new ArrayList<>();
 
     
     public Player(char number, float intelligence, float strength){
-        this.number = number;
-        this.intelligence = intelligence;
-        this.strength =  strength;
-        this.name = "Player # " + number;
-        this.health = INITIAL_HEALTH;
+        super("Player # " + number,intelligence,strength,INITIAL_HEALTH);
+    }
+    public Player(Player other){
+        super(other.getName(),other.getIntelligence(), other.getStrength(), other.getHealth());
     }
     public void resurrect(){
         weapons.clear();
         shields.clear();    
-        health = INITIAL_HEALTH;
+        setHealth(INITIAL_HEALTH);
         consecutiveHits = 0;
-    }
-    public int getRow(){
-        return row;
-    }
-    public int getCol(){
-        return col;
-    }
-    public char getNumber(){
-        return number;
-    }
-    public void setPos(int row, int col){
-        this.row = row;
-        this.col = col;
-    }
-    public boolean dead(){
-        return health <= 0;
     }
     public Directions move(Directions direction, Directions[] validMoves){
         int size = validMoves.length;
@@ -62,10 +42,15 @@ public class Player {
             return direction;
         }
     }
-    public float attack(){
-        return strength + sumWeapons();
+    public char getNumber(){
+        return number;
     }
-    public boolean defend(float receivedAttack){
+    @Override
+    public float attack(){
+        return getStrength() + sumWeapons();
+    }
+    @Override
+    public Boolean defend(float receivedAttack){
         return manageHit(receivedAttack);
     }
     public void receiveReward(){
@@ -82,12 +67,15 @@ public class Player {
             receiveShield(snew);
         }
         int extraHealth = Dice.healthReward();
-        health += extraHealth;
+        setHealth(getHealth()+extraHealth);
     }
-    public String toString(){
-        return "Player [Name: " + name + ", Number: " + number + ", Intelligence: " + intelligence +
-                ", Strength: " + strength + ", Health: " + health + ", Row: " + row + ", Col: " + col + "]" +"\n" + weapons.toString() + "\n" + shields.toString()
-                + " Sum weapons: " + sumWeapons() + " Sum shields " + sumShields();
+    @Override
+    public String toString() {
+        return "Player " + super.toString() + 
+               "\nWeapons: " + weapons.toString() + 
+               "\nShields: " + shields.toString() +
+               " Sum Weapons: " + sumWeapons() + 
+               " Sum Shields: " + sumShields();
     }
     private void receiveWeapon(Weapon w){
         for (int i = 0; i < weapons.size(); i++){
@@ -127,22 +115,22 @@ public class Player {
         int uses = Dice.usesLeft();
         return new Shield(power, uses);
     }
-    private float sumWeapons(){
+    protected float sumWeapons(){
         float sum = 0.0f;
         for (Weapon w: weapons){
             sum += w.attack();
         }
         return sum;
     }
-    private float sumShields(){
+    protected float sumShields(){
         float sum = 0.0f;
         for (Shield s: shields){
             sum += s.protect();
         }
         return sum;
     }
-    private float defensiveEnergy(){
-        return intelligence + sumShields();
+    protected float defensiveEnergy(){
+        return getIntelligence() + sumShields();
     }
     private boolean manageHit(float receivedAttack){
         float defense = defensiveEnergy();
@@ -165,15 +153,8 @@ public class Player {
     private void resetHits(){
         consecutiveHits = 0;
     }
-    private void gotWounded(){
-        health -= 1;
-    }
     private void incConsecutiveHits(){
         consecutiveHits++;
-    }
-    // setter temporal
-    public void setHealth(int h){
-        this.health = h;
     }
     
     

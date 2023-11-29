@@ -4,7 +4,7 @@ public abstract class CombatElement {
     private float effect;
     private int uses;
     
-    public void CombatElement(float effect, int uses){
+    public CombatElement(float effect, int uses){
         this.effect = effect;
         this.uses  = uses;
     }

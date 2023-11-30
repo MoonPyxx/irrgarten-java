@@ -12,10 +12,17 @@ public class Player extends LabyrinthCharacter {
     
     private ArrayList<Weapon> weapons = new ArrayList<>();
     private ArrayList<Shield> shields = new ArrayList<>();
+    private ShieldCardDeck shieldCardDeck;
+    private WeaponCardDeck weaponCardDeck;
+
+
+    
 
     
     public Player(char number, float intelligence, float strength){
         super("Player # " + number,intelligence,strength,INITIAL_HEALTH);
+        shieldCardDeck= new ShieldCardDeck();
+        weaponCardDeck= new WeaponCardDeck();
     }
     public Player(Player other){
         super(other.getName(),other.getIntelligence(), other.getStrength(), other.getHealth());
@@ -59,11 +66,11 @@ public class Player extends LabyrinthCharacter {
         System.out.println("w " + wReward);
         System.out.println("s : " + sReward);
         for (int i = 0; i < wReward; i++){
-            Weapon wnew = newWeapon();
+            Weapon wnew = weaponCardDeck.nextCard();
             receiveWeapon(wnew);
         }
         for (int i = 0; i < sReward; i++){
-            Shield snew = newShield();
+            Shield snew = shieldCardDeck.nextCard();
             receiveShield(snew);
         }
         int extraHealth = Dice.healthReward();
@@ -105,6 +112,7 @@ public class Player extends LabyrinthCharacter {
             shields.add(s);
         }
     }
+    /*
     private Weapon newWeapon(){
         float power = Dice.weaponPower();
         int uses = Dice.usesLeft();
@@ -115,6 +123,7 @@ public class Player extends LabyrinthCharacter {
         int uses = Dice.usesLeft();
         return new Shield(power, uses);
     }
+*/
     protected float sumWeapons(){
         float sum = 0.0f;
         for (Weapon w: weapons){

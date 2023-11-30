@@ -3,7 +3,7 @@ package Irrgarten;
 import java.util.ArrayList;
         
 public class Game {
-    private static int MAX_ROUNDS  = 10;
+    private static final int MAX_ROUNDS  = 10;
     private int currentPlayerIndex;
     private String log;
     private ArrayList<Player> players = new ArrayList<>();
@@ -45,6 +45,10 @@ public class Game {
     }
     public boolean nextStep(Directions preferredDirection){
          log = "";
+         // preguntar
+         if (currentPlayer == null){
+             currentPlayer = players.get(currentPlayerIndex);
+         }
         boolean dead = currentPlayer.dead();
         if (!dead){
             Directions direction = actualDirection(preferredDirection);
@@ -106,7 +110,7 @@ public class Game {
                     
     }
     private void configureLabyrinthDebug(){
-        int numBlocks = 2, numMonsters = 2;
+        int numBlocks = 2;
             for (int i = 0; i < numBlocks; i++) {
                 int row = i+1;
                 int col = i+1; 
@@ -128,6 +132,7 @@ public class Game {
         if (currentPlayerIndex >= players.size()){
             currentPlayerIndex= 0;
         }
+        currentPlayer = players.get(currentPlayerIndex);
     }
     private Directions actualDirection(Directions preferredDirection){
         int currentRow = currentPlayer.getRow();

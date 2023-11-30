@@ -23,6 +23,7 @@ public class Player extends LabyrinthCharacter {
         super("Player # " + number,intelligence,strength,INITIAL_HEALTH);
         shieldCardDeck= new ShieldCardDeck();
         weaponCardDeck= new WeaponCardDeck();
+        this.number = number;
     }
     public Player(Player other){
         super(other.getName(),other.getIntelligence(), other.getStrength(), other.getHealth());

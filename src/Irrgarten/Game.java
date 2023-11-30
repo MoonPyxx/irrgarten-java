@@ -113,19 +113,6 @@ public class Game {
                 int length = 2;
                 labyrinth.addBlock(Orientation.VERTICAL, row, col ,length);
          }
-        /*crear monstruos de manera automatica (debug), como voy a crear 2 para comprobar el combate no hace falta
-            for (int i = 0; i<numMonsters; i++){ 
-            int row = i;
-            int col = i;      
-            String monsterName = "Monster " + (i+1);
-            float intelligence = i+1;
-            float strength = i+1;
-            Monster m = new Monster(monsterName, intelligence, strength);
-            m.setPos(row, col);
-            labyrinth.addMonster(i+1,i+1, m);
-             monsters.add(m);
-        }
-*/
         Monster m1 = new Monster("Monster 1", 10,10);
         Monster m2 = new Monster("Monster 2", 6,6);
         labyrinth.addMonster(5,5,m1);
@@ -146,10 +133,31 @@ public class Game {
         int currentRow = currentPlayer.getRow();
         int currentCol = currentPlayer.getCol();
         Directions [] validMoves = labyrinth.validMoves(currentRow, currentCol);
-        Directions output = currentPlayer.move(preferredDirection, validMoves);
-        return output;
+        return currentPlayer.move(preferredDirection, validMoves);
     }
     private GameCharacter combat(Monster monster){
+        
+        int rounds = 0;
+        GameCharacter winner = GameCharacter.PLAYER;
+        float playerAttack = currentPlayer.attack();
+        boolean lose = monster.defend(playerAttack);
+        while (!lose && (rounds < MAX_ROUNDS)){
+            winner = GameCharacter.MONSTER;
+            rounds++;
+            float monsterAttack = monster.attack();
+            lose = currentPlayer.defend(monsterAttack);
+            if (!lose){
+                playerAttack = currentPlayer.attack();
+                lose = monster.defend(playerAttack);
+                winner = GameCharacter.PLAYER;
+            }
+        }
+        logRounds(rounds, MAX_ROUNDS);
+        return winner;
+
+        
+        // codigo antiguo
+        /*
         int rounds = 0;
         GameCharacter winner = GameCharacter.PLAYER;
         boolean lose = false;
@@ -157,7 +165,7 @@ public class Game {
            float playerAttack = currentPlayer.attack(); 
            lose = monster.defend(playerAttack);
            if (!lose){
-               float monsterAttack = monster.attack();
+               float modnsterAttack = monster.attack();
                lose = currentPlayer.defend(monsterAttack);
                if (lose){
                    winner = GameCharacter.MONSTER;
@@ -166,7 +174,7 @@ public class Game {
            rounds ++;
         }
         logRounds(rounds, MAX_ROUNDS);
-        return winner;
+*/
         
     }
     private void manageReward(GameCharacter winner){
@@ -213,11 +221,4 @@ public class Game {
        log += rounds + " out of " + max + " combat rounds have occurred.\n";
 
     }
-    // getters temporal
-    public Player getCurrentPlayer(){
-        return players.get(currentPlayerIndex);
-    }
-    public Labyrinth getLabyrinth(){
-        return labyrinth;
-    } 
 }

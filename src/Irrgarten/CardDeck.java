@@ -4,7 +4,7 @@ import java.util.Collections;
 public abstract class CardDeck<T> {
     private ArrayList<T> cardDeck;
     public CardDeck(){
-        
+        cardDeck = new ArrayList <>();
     }
     protected abstract void addCards();
     protected void addCard(T card){

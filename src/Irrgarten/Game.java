@@ -156,29 +156,7 @@ public class Game {
             }
         }
         logRounds(rounds, MAX_ROUNDS);
-        return winner;
-
-        
-        // codigo antiguo
-        /*
-        int rounds = 0;
-        GameCharacter winner = GameCharacter.PLAYER;
-        boolean lose = false;
-        while (!lose && rounds < MAX_ROUNDS){
-           float playerAttack = currentPlayer.attack(); 
-           lose = monster.defend(playerAttack);
-           if (!lose){
-               float modnsterAttack = monster.attack();
-               lose = currentPlayer.defend(monsterAttack);
-               if (lose){
-                   winner = GameCharacter.MONSTER;
-               }
-           }
-           rounds ++;
-        }
-        logRounds(rounds, MAX_ROUNDS);
-*/
-        
+        return winner;        
     }
     private void manageReward(GameCharacter winner){
         if (winner == GameCharacter.PLAYER){

@@ -82,7 +82,7 @@ public class Player extends LabyrinthCharacter {
         return "Player " + super.toString() + 
                "\nWeapons: " + weapons.toString() + 
                "\nShields: " + shields.toString() +
-               " Sum Weapons: " + sumWeapons() + 
+               " \nSum Weapons: " + sumWeapons() + 
                " Sum Shields: " + sumShields();
     }
     private void receiveWeapon(Weapon w){

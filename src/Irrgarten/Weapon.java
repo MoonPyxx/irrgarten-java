@@ -7,6 +7,8 @@ public class Weapon extends CombatElement{
     
     public Weapon(float power, int uses){
         super(power,uses);
+        this.power = power;
+        this.uses = uses;
     }
     public float attack(){
         return produceEffect();

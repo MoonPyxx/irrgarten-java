@@ -5,6 +5,8 @@ public class Shield extends CombatElement{
     private int uses;
     public Shield(float protection, int uses){
         super(protection,uses);
+        this.protection = protection;
+        this.uses = uses;
     }
     public float protect(){
         return produceEffect();

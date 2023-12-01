@@ -113,18 +113,6 @@ public class Player extends LabyrinthCharacter {
             shields.add(s);
         }
     }
-    /*
-    private Weapon newWeapon(){
-        float power = Dice.weaponPower();
-        int uses = Dice.usesLeft();
-        return new Weapon(power, uses);
-    }
-    private Shield newShield(){
-        float power = Dice.shieldPower();
-        int uses = Dice.usesLeft();
-        return new Shield(power, uses);
-    }
-*/
     protected float sumWeapons(){
         float sum = 0.0f;
         for (Weapon w: weapons){

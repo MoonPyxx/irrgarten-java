@@ -22,6 +22,7 @@ public class Game {
             players.add(new Player((char)(i + '0'), intelligence, strength));
         }   
             currentPlayerIndex = 0;
+            currentPlayer= players.get(currentPlayerIndex);
             labyrinth = new Labyrinth(10,10,9,9);
             configureLabyrinthDebug();
         } else{
@@ -45,10 +46,7 @@ public class Game {
     }
     public boolean nextStep(Directions preferredDirection){
          log = "";
-         // preguntar
-         if (currentPlayer == null){
-             currentPlayer = players.get(currentPlayerIndex);
-         }
+         
         boolean dead = currentPlayer.dead();
         if (!dead){
             Directions direction = actualDirection(preferredDirection);

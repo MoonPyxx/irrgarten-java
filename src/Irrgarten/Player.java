@@ -29,10 +29,14 @@ public class Player extends LabyrinthCharacter {
         super(other.getName(),other.getIntelligence(), other.getStrength(), other.getHealth());
     }
     public void resurrect(){
+
         weapons.clear();
         shields.clear();    
         setHealth(INITIAL_HEALTH);
         consecutiveHits = 0;
+       
+
+        
     }
     public Directions move(Directions direction, Directions[] validMoves){
         int size = validMoves.length;
@@ -154,6 +158,5 @@ public class Player extends LabyrinthCharacter {
     private void incConsecutiveHits(){
         consecutiveHits++;
     }
-    
     
 }

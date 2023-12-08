@@ -49,7 +49,7 @@ public abstract class LabyrinthCharacter {
         this.col = col;
     }
     public String toString() {
-        return "LabyrinthCharacter [Name: " + getName() + 
+        return "[Name: " + getName() + 
                ", Intelligence: " + getIntelligence() + 
                ", Strength: " + getStrength() + 
                ", Health: " + getHealth() + 
@@ -61,4 +61,7 @@ public abstract class LabyrinthCharacter {
     }
     public abstract float attack();
     public abstract Boolean defend(float attack);
+        public void setHealth(int h){
+        this.health = h;
+    }
 }

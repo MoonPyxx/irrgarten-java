@@ -170,7 +170,16 @@ public class Game {
         boolean resurrect = Dice.resurrectPlayer();
         if (resurrect){
             currentPlayer.resurrect();
-            logResurrected();
+            boolean resurrectFuzzy = Dice.resurrectPlayer();
+             if (resurrectFuzzy){
+             FuzzyPlayer newFuzzyPlayer = new FuzzyPlayer(currentPlayer);
+             players.set(currentPlayerIndex, newFuzzyPlayer);
+             currentPlayer = newFuzzyPlayer;
+             logResurrectedFuzzy();
+            }  else{
+                 logResurrected();
+             }
+            
         } else{
             logPlayerSkipTurn();
         }
@@ -184,6 +193,10 @@ public class Game {
     }
     private void logResurrected(){
         log += "The player has resurrected.\n";
+
+    }
+        private void logResurrectedFuzzy(){
+        log += "The player has resurrected as a fuzzy player.\n";
 
     }
     private void logPlayerSkipTurn(){
@@ -201,5 +214,8 @@ public class Game {
     private void logRounds(int rounds, int max){
        log += rounds + " out of " + max + " combat rounds have occurred.\n";
 
+    }
+    public Player getCurrentPlayer(){
+        return currentPlayer;
     }
 }

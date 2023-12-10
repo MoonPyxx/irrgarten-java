@@ -52,14 +52,17 @@ public class Cursors extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(57, 57, 57)
                 .addComponent(LEFT)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 107, Short.MAX_VALUE)
                 .addComponent(RIGHT)
-                .addGap(107, 107, 107))
+                .addGap(92, 92, 92))
             .addGroup(layout.createSequentialGroup()
-                .addGap(137, 137, 137)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(DOWN)
-                    .addComponent(UP))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(146, 146, 146)
+                        .addComponent(DOWN))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(162, 162, 162)
+                        .addComponent(UP)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -81,18 +84,22 @@ public class Cursors extends javax.swing.JDialog {
 
     private void UPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UPActionPerformed
         direction = Directions.UP;
+        dispose();
     }//GEN-LAST:event_UPActionPerformed
 
     private void RIGHTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RIGHTActionPerformed
         direction = Directions.RIGHT;
+        dispose();
     }//GEN-LAST:event_RIGHTActionPerformed
 
     private void LEFTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LEFTActionPerformed
         direction = Directions.LEFT;
+        dispose();
     }//GEN-LAST:event_LEFTActionPerformed
 
     private void DOWNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DOWNActionPerformed
         direction = Directions.DOWN;
+        dispose();
     }//GEN-LAST:event_DOWNActionPerformed
     public Directions getDirection(){
         return direction;

@@ -45,7 +45,7 @@ public class GuiUI extends javax.swing.JFrame implements UI {
         LaberintoLabel.setText("Irrgarten");
         LaberintoLabel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        turnoLabel.setText("Turno:");
+        turnoLabel.setText("Turn:");
         turnoLabel.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         turno.setBackground(new java.awt.Color(0, 0, 0));
@@ -101,7 +101,7 @@ public class GuiUI extends javax.swing.JFrame implements UI {
         TableroArea.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jScrollPane4.setViewportView(TableroArea);
 
-        Tablero.setText("Tablero");
+        Tablero.setText("Labyrinth");
         Tablero.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

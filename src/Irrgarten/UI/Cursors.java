@@ -5,6 +5,7 @@ public class Cursors extends javax.swing.JDialog {
     public Cursors(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -35,11 +36,13 @@ public class Cursors extends javax.swing.JDialog {
 
         jPanel2.setBackground(new java.awt.Color(0, 153, 153));
         jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         RIGHT.setBackground(new java.awt.Color(204, 204, 255));
         RIGHT.setForeground(new java.awt.Color(0, 102, 0));
         RIGHT.setText("RIGHT");
         RIGHT.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        RIGHT.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         RIGHT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RIGHTActionPerformed(evt);
@@ -50,6 +53,7 @@ public class Cursors extends javax.swing.JDialog {
         UP.setForeground(new java.awt.Color(0, 102, 51));
         UP.setText("UP");
         UP.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        UP.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         UP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 UPActionPerformed(evt);
@@ -60,6 +64,7 @@ public class Cursors extends javax.swing.JDialog {
         LEFT.setForeground(new java.awt.Color(0, 102, 51));
         LEFT.setText("LEFT");
         LEFT.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        LEFT.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         LEFT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LEFTActionPerformed(evt);
@@ -70,6 +75,7 @@ public class Cursors extends javax.swing.JDialog {
         DOWN.setForeground(new java.awt.Color(0, 102, 0));
         DOWN.setText("DOWN");
         DOWN.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        DOWN.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         DOWN.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DOWNActionPerformed(evt);
@@ -78,6 +84,7 @@ public class Cursors extends javax.swing.JDialog {
 
         exit.setText("Exit");
         exit.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        exit.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         exit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exitActionPerformed(evt);

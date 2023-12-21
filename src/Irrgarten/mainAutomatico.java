@@ -1,17 +1,19 @@
 package Irrgarten;
 import Irrgarten.UI.GuiUI;
+import java.util.concurrent.TimeUnit;
 public class mainAutomatico {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
         Game game = new Game(2,true);
         GuiUI view = new GuiUI();
+        TimeUnit.SECONDS.sleep(5);
         // Probar combates
         game.nextStep(Directions.LEFT);
         view.showGame(game.getGameState());
         game.nextStep(Directions.RIGHT);
         view.showGame(game.getGameState());      
         
-        // Probar resurrecion
+        // Probar resurrecion (fuzzy player)
         /*
         Player currentPlayer = game.getCurrentPlayer();
         currentPlayer.setHealth(0);
